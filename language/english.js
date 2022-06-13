@@ -1,35 +1,31 @@
-const config = require("../config/config");
-
-const server_URL = config.serverUrl;
-
 module.exports = {
     //Greetings
     initiateConversationMessages: ["hi", "Hi", "Hello", "hii", "HI", "hello", "hey", "Hey", "HEY", "HELLO"],
     Yes: ["Yes", "yes", "1"],
     No: ["No", "no", "2"],
-    welcomeMessage: "Hello this bot can evaluate your starups credentials for registeration",
+    welcomeMessage: "Hello this bot can evaluate your startups credentials for registration",
 
     welcomeMessageForStakeHolder: "",
 
-    reviewProfile: "Do you want to update these details?\n1. Yes\n2. No",
+    reviewProfile: "Do you want to update these details?\n\n1. Yes\n2. No",
 
     //Questions
-    askForUserProfile: "Select Your profile",
-    askForName: "What is your full name?",
-    askForDin: "What is your DIN(Directors indentification number)?",
-    askForIdProof: "Please upload your id proof (Voter id/Driving License/Passport)",
-    askForCompanyName: "What is your company name?",
-    askForPanCard: "Please send Your PanCard image",
-    askForEmail: "What is your email Id ?",
-    askForNumber: "What is your registered mobile number",
-    askForAddressProof: "Please upload an image of company's address proof..",
-    askForNoc: "Please upload registered company's NOC image",
-    askForCompanyShare: "For which company ,you want share?",
-    updateData: "Do you want to update the existing details?\n 1.Yes\n 2.No",
+    askForUserProfile: "Select your profile",
+    askForName: "Enter your full name",
+    askForDin: "Enter your DIN(Directors indentification number)",
+    askForIdProof: "Upload your id proof (Voter id/Driving License/Passport)",
+    askForCompanyName: "Enter your company name",
+    askForPanCard: "Upload your pan card image",
+    askForEmail: "Enter your email Id",
+    askForNumber: "Enter your registered mobile number",
+    askForAddressProof: "Upload an image of company's address proof",
+    askForNoc: "Upload registred company's NOC image",
+    askForCompanyShare: "For which company, you want a share?",
+    updateData: "Do you want to update the existing details?\n\n 1.Yes\n 2.No",
 
     //thank you message
-    thankYouMessageForStakeHolder: "Thank you for interacting with us,\nWe will evaluate these details and inform you soon",
-    thankYouMessageForShareHolder: "Thank You for your response,\n we will evaluate your details,\n and will notify you soon.",
+    thankYouMessageForStakeHolder: "Thank you for interacting with us. We will evaluate these details and inform you soon",
+    thankYouMessageForShareHolder: "Thank You for your response. We will evaluate your details and notify you soon.",
 
 
     //fallbacks
