@@ -46,7 +46,7 @@ app.post("/webhook", (req, res) => {
             const waId = value.from;
 
             if (value.type === "text") {
-                console.log(value.text.body)
+                // console.log(value.text.body)
                 handleTextMessage(waId, value.text.body)
                 res.status(200).end();
 
@@ -54,7 +54,7 @@ app.post("/webhook", (req, res) => {
                 handleTextMessage(waId, value.interactive.list_reply.id)
                 res.status(200).end();
             } else if (value.type === "image") {
-                console.log(value.image)
+                // console.log(value.image)
 
                 handleImageMessage(waId, value.image)
                 res.status(200).end();
