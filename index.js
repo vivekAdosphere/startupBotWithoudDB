@@ -40,35 +40,27 @@ app.get("/verify/:password", (req, res) => {
 
 app.post("/webhook", (req, res) => {
     if (req.body.messages) {
-        // console.log(req.body.messages)
+
         const messages = req.body.messages
         messages.forEach(async(value) => {
             const waId = value.from;
 
             if (value.type === "text") {
-                // console.log(value.text.body)
                 handleTextMessage(waId, value.text.body)
                 res.status(200).end();
-
             } else if (value.type === "interactive") {
                 handleTextMessage(waId, value.interactive.list_reply.id)
                 res.status(200).end();
             } else if (value.type === "image") {
-                // console.log(value.image)
-
                 handleImageMessage(waId, value.image)
                 res.status(200).end();
-
             } else {
-                res.status(200).json({
-                    "message": "Failed"
-                })
+                res.status(200).end();
             }
         })
 
     } else {
         res.status(200).end();
-
     }
 })
 
