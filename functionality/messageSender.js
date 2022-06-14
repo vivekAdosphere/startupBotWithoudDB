@@ -14,6 +14,7 @@ const headers = {
 
 const serverUrl = config.SERVER_URL
 const baseApiUrl = config.API_BASE_URL
+const namespaceId = config.NAMESPACE_ID
 
 
 //send text message to whatsapp number
@@ -115,8 +116,6 @@ exports.sendDocumentFile = async(number, certificateId, filename) => {
 
 //to send template message to number
 exports.sendTemplateMessage = async(number, template) => {
-    console.log(template)
-    console.log(namespaceId)
     try {
         const payload = {
             "recipient_type": "individual",

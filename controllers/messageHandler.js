@@ -131,7 +131,6 @@ exports.handleImageMessage = async(number, message) => {
                     break
                 case "5":
                     panCardHandlerForStakeHolder(number, message.id)
-                    console.log(message)
                     break
                 case "6":
                     idProofHandlerForStakeHolder(number, message.id)
@@ -181,7 +180,7 @@ exports.handleImageMessage = async(number, message) => {
 
 exports.handleButtonMessage = async(number, buttonText) => {
     try {
-        if (flowPathIndicator.has(number) === "11") {
+        if (flowPathIndicator.has(number) && flowPathIndicator.get(number) === "11") {
             thankYouHandler(number, buttonText)
         }
 

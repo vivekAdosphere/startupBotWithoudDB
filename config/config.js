@@ -6,6 +6,5 @@ module.exports = {
     SERVER_URL: (process.env.DEBUG).toLowerCase() === "true" ? (process.env.LOCAL_SERVER_URL).toLowerCase() : (process.env.PRODUCTION_SERVER_URL),
     ACCESS_TOKEN: process.env.ACCESS_TOKEN,
     VERIFY_TOKEN: process.env.VERIFY_TOKEN,
-
-
+    NAMESPACE_ID: process.env.NAMESPACE_ID
 }

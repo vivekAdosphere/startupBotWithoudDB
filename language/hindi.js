@@ -6,14 +6,10 @@ module.exports = {
     welcomeMessage: "Hello this bot can evaluate your startups credentials for registration",
 
     welcomeMessageForStakeHolder: "",
-
-<<<<<<< Updated upstream
     reviewProfile: "Do you want to update these details?\n\n1. Yes\n2. No",
-=======
 
     //templates
     updateInfo: ["update_details", "en"],
->>>>>>> Stashed changes
 
     //Questions
     askForUserProfile: "Select your profile",

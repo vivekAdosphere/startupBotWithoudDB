@@ -96,16 +96,16 @@ exports.nameHandlerForStakeHolder = async(number, message) => {
 
     try {
         //we validate if given message is alphabetic or not is have then flowpath=4
-        if (validator.isAlphabetic(message)) {
-            userDataFlagHandler(number, "stakeholderName", message)
-            await sendTextMessage(number, languageChooser(number).askForCompanyName)
-            flowPathIndicator.set(number, "4")
+        // if (validator.isAlphabetic(message)) {
+        userDataFlagHandler(number, "stakeholderName", message)
+        await sendTextMessage(number, languageChooser(number).askForCompanyName)
+        flowPathIndicator.set(number, "4")
 
-        } else {
-            console.log(message)
-            await sendTextMessage(number, languageChooser(number).invalidName)
-            flowPathIndicator.set(number, "3")
-        }
+        // } else {
+        //     console.log(message)
+        //     await sendTextMessage(number, languageChooser(number).invalidName)
+        //     flowPathIndicator.set(number, "3")
+        // }
     } catch (err) {
         logger.error(`Error, ${languageChooser(number).somethingWentWrong}`);
         clearFlags(number)
@@ -227,8 +227,7 @@ exports.companyAddressProofHandler = async(number, message) => {
 exports.nocHandler = async(number, message) => {
     try {
         userDataFlagHandler(number, "noc", message)
-        await sendTextMessage(number, `Thank You ${userData.get(number).stakeholderName}\nYou have given these details:\n1.DIN: ${userData.get(number).din}\n2.Company Name: ${userData.get(number).companyName}\n3.Email: ${userData.get(number).email}\n4.Mobile Number: ${userData.get(number).number}`)
-        await sendTextMessage(number, "isdu")
+        await sendTextMessage(number, `Thank You ${userData.get(number).stakeholderName}. You have given these details:\n\n1. DIN: ${userData.get(number).din}\n2. Company Name: ${userData.get(number).companyName}\n3. Email: ${userData.get(number).email}\n4.Mobile Number: ${userData.get(number).number}`)
         await sendTemplateMessage(number, languageChooser(number).updateInfo);
         flowPathIndicator.set(number, "11")
     } catch (err) {
