@@ -59,62 +59,64 @@ exports.sendDocumentFile = async(number, certificateId, filename) => {
     }
 }
 
-exports.sendListMessage = async(number, message) => {
-    try {
-        const payload = {
+// exports.sendListMessage = async(number, message) => {
+//     try {
+//         const payload = {
 
-            "recipient_type": "individual",
-            "to": number,
-            "type": "interactive",
-            "interactive": {
-                "type": "list",
-                "header": {
-                    "type": "text",
-                    "text": message
-                },
-                "body": {
-                    "text": "You have two options"
-                },
-                "footer": {
-                    "text": "Please select to proceed"
-                },
-                "action": {
-                    "button": "Open profile options",
-                    "sections": [{
-                            "title": "Option 1",
-                            "rows": [{
-                                "id": "id1",
-                                "title": "StakeHolder",
-                                "description": "StakeHolder can register startup"
-                            }]
-                        },
-                        {
-                            "title": "Option 2",
-                            "rows": [{
-                                "id": "id2",
-                                "title": "ShareHolder",
-                                "description": "Share Holder can take share of a comapny"
-                            }]
-                        }
+//             "recipient_type": "individual",
+//             "to": number,
+//             "type": "interactive",
+//             "interactive": {
+//                 "type": "list",
+//                 "header": {
+//                     "type": "text",
+//                     "text": message
+//                 },
+//                 "body": {
+//                     "text": "Are you owner of the company?"
+//                 },
+//                 // "footer": {
+//                 //     "text": "Please select to proceed"
+//                 // },
+//                 "action": {
+//                     "button": "Open profile options",
+//                     "sections": [{
+//                             "title": "Option 1",
+//                             "rows": [{
+//                                 "id": "id1",
+//                                 "title": "Yes",
+//                                 "description": "StakeHolder can register startup"
+//                             }]
+//                         },
+//                         {
+//                             "title": "Option 2",
+//                             "rows": [{
+//                                 "id": "id2",
+//                                 "title": "No",
+//                                 // "description": "Share Holder can take share of a comapny"
+//                             }]
+//                         }
 
-                    ]
-                }
+//                     ]
+//                 }
 
 
 
-            }
-        }
-        const res = await axios.post(baseApiUrl + "/messages", payload, { headers });
-        return res.data
+//             }
+//         }
+//         const res = await axios.post(baseApiUrl + "/messages", payload, { headers });
+//         return res.data
 
-    } catch (err) {
-        logger.error(`Error, ${JSON.stringify(err.response.data)}`);
-        return err.response.data
-    }
-}
+//     } catch (err) {
+//         logger.error(`Error, ${JSON.stringify(err.response.data)}`);
+//         return err.response.data
+//     }
+// }
 
 //to send template message to number
-exports.sendTempelateMessage = async(number, message) => {
+exports.sendTemplateMessage = async(number, template) => {
+    console.log(template)
+    console.log(namespaceId)
     try {
         const payload = {
             "recipient_type": "individual",
@@ -133,7 +135,7 @@ exports.sendTempelateMessage = async(number, message) => {
         return res.data
 
     } catch (err) {
-        logger.error(`Error,${JSON.stringify(err.response.data)}`)
+        logger.error(`Error from template message,${JSON.stringify(err.response.data)}`)
         return err.response.data
     }
 }

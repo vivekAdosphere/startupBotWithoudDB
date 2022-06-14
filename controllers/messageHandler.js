@@ -35,9 +35,9 @@ exports.handleTextMessage = async(number, message) => {
             introductionHandler(number, message)
         } else if (flowPathIndicator.has(number)) {
             switch (flowPathIndicator.get(number)) {
-                case "1":
-                    profileHandler(number, message)
-                    break
+                // case "1":
+                //     profileHandler(number, message)
+                //     break
                 case "2":
                     dinHandler(number, message)
                     break
@@ -65,9 +65,9 @@ exports.handleTextMessage = async(number, message) => {
                 case "10":
                     sendTextMessage(number, languageChooser(number).errorForImage)
                     break
-                case "11":
-                    thankYouHandler(number, message)
-                    break
+                    // case "11":
+                    //     thankYouHandler(number, message)
+                    //     break
                 case "shareholder":
                     nameHandlerForShareHolder(number, message)
                     break
@@ -173,6 +173,18 @@ exports.handleImageMessage = async(number, message) => {
                     sendTextMessage(number, languageChooser(number).somethingWentWrong)
             }
         }
+    } catch (err) {
+        logger.error(`Error,${languageChooser(number).somethingWentWrong}`)
+        clearFlags(number)
+    }
+}
+
+exports.handleButtonMessage = async(number, buttonText) => {
+    try {
+        if (flowPathIndicator.has(number) === "11") {
+            thankYouHandler(number, buttonText)
+        }
+
     } catch (err) {
         logger.error(`Error,${languageChooser(number).somethingWentWrong}`)
         clearFlags(number)

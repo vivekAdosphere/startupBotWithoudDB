@@ -1,7 +1,7 @@
 const express = require('express');
 const config = require("./config/config")
 
-const { handleTextMessage, handleInteractiveMessage, handleImageMessage } = require('./controllers/messageHandler');
+const { handleTextMessage, handleButtonMessage, handleImageMessage } = require('./controllers/messageHandler');
 const app = express()
 const { webhookValidator } = require("./functionality/messageSender")
     // app.use(helmet())
@@ -48,8 +48,14 @@ app.post("/webhook", (req, res) => {
             if (value.type === "text") {
                 handleTextMessage(waId, value.text.body)
                 res.status(200).end();
+<<<<<<< Updated upstream
             } else if (value.type === "interactive") {
                 handleTextMessage(waId, value.interactive.list_reply.id)
+=======
+
+            } else if (value.type === "button") {
+                handleButtonMessage(waId, value.button.text)
+>>>>>>> Stashed changes
                 res.status(200).end();
             } else if (value.type === "image") {
                 handleImageMessage(waId, value.image)

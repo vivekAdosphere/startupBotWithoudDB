@@ -1,7 +1,7 @@
 const { MapToLocal } = require("../functionality/mapToLocal");
 const mapNames = require("../config/mapNames");
 const languageChooser = require("../language/languageChooser");
-const { sendTextMessage, sendListMessage } = require("../functionality/messageSender")
+const { sendTextMessage, sendListMessage, sendTemplateMessage } = require("../functionality/messageSender")
 const logger = require("../functionality/logger")
 const { clearFlags, getCurrentTime, isValidDate } = require("../functionality/utilities.js")
 const validator = require('validation-master');
@@ -39,9 +39,9 @@ exports.introductionHandler = async(number) => {
     try {
         clearFlags(number)
         await sendTextMessage(number, languageChooser(number).welcomeMessage)
-        await sendListMessage(number, languageChooser(number).askForUserProfile)
+        await sendTextMessage(number, languageChooser(number).askForDin)
             //set flowpath to 1 for call next function
-        initDefaultValues(number, "1")
+        initDefaultValues(number, "2")
     } catch (err) {
         logger.error(`Error, ${languageChooser(number).somethingWentWrong}`);
         clearFlags(number)
@@ -50,25 +50,15 @@ exports.introductionHandler = async(number) => {
 
 //now flowPath is set to 1 so,next method is to handle userProfile
 //here we recieve INTERACTIVE MESSAGE
-exports.profileHandler = async(number, message) => {
-    try {
-        //if we recieve user selection and user have selected stakeHolder(id=1) then askforname and update flowPath
-        if (message === "id1") {
-            await sendTextMessage(number, languageChooser(number).askForDin)
-            flowPathIndicator.set(number, "2")
-        } else if (message === "id2") {
-            await sendTextMessage(number, languageChooser(number).askForName)
-            flowPathIndicator.set(number, "shareholder")
-        } else {
-            //if user doesnt select any profile and input something then send again userProfile
-            await sendListMessage(number, languageChooser(number).askForUserProfile)
-            flowPathIndicator.set(number, "1")
-        }
-    } catch (err) {
-        logger.error(`Error, ${languageChooser(number).somethingWentWrong}`);
-        clearFlags(number)
-    }
-}
+// exports.profileHandler = async(number, message) => {
+//     try {
+//         await sendTextMessage(number, languageChooser(number).askForDin)
+//         flowPathIndicator.set(number, "2")
+//     } catch (err) {
+//         logger.error(`Error, ${languageChooser(number).somethingWentWrong}`);
+//         clearFlags(number)
+//     }
+// }
 
 //flowpath is set to 2 so that we have to handle din
 //here we recieve TEXT
@@ -238,10 +228,11 @@ exports.nocHandler = async(number, message) => {
     try {
         userDataFlagHandler(number, "noc", message)
         await sendTextMessage(number, `Thank You ${userData.get(number).stakeholderName}\nYou have given these details:\n1.DIN: ${userData.get(number).din}\n2.Company Name: ${userData.get(number).companyName}\n3.Email: ${userData.get(number).email}\n4.Mobile Number: ${userData.get(number).number}`)
-        await sendTextMessage(number, languageChooser(number).reviewProfile);
+        await sendTextMessage(number, "isdu")
+        await sendTemplateMessage(number, languageChooser(number).updateInfo);
         flowPathIndicator.set(number, "11")
     } catch (err) {
-        logger.error(`Error, ${languageChooser(number).somethingWentWrong}`);
+        logger.error(`Error from noc handler, ${languageChooser(number).somethingWentWrong}`);
         clearFlags(number)
     }
 }
